@@ -1,0 +1,22 @@
+{
+    "name": "ts-sandbox-server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "deno serve -A --env-file=.env --unstable-sloppy-imports --unstable-bare-node-builtins ./src/main.ts",
+        "build": "bun run ./src/build.ts",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "Apache-2.0",
+    "devDependencies": {
+        "hono": "^4.10.6",
+        "typescript": "^5.9.3"
+    },
+    "dependencies": {
+        "@std/assert": "npm:@jsr/std__assert",
+        "@std/path": "npm:@jsr/std__path"
+    }
+}

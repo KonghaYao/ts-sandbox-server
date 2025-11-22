@@ -1,0 +1,220 @@
+### 创建工作空间
+POST http://localhost:8000/api/temp_workspace/create
+
+###
+
+### 工作空间文件管理 - 下载文件
+GET http://localhost:8000/api/temp_workspace/files/download?filename=test.txt
+
+###
+
+### 基础代码执行示例
+POST http://localhost:8000/api/temp_workspace/execute
+Content-Type: application/json
+
+{
+  "code": "console.log('Hello from sandbox!');",
+  "timeout": 5000,
+  "memoryLimit": 50
+}
+
+###
+
+### 数学计算示例
+POST http://localhost:8000/api/temp_workspace/execute
+Content-Type: application/json
+
+{
+  "code": "const result = 2 + 2 * 3; console.log('Result:', result);",
+  "timeout": 2000,
+  "memoryLimit": 25
+}
+
+###
+
+### 数组操作示例
+POST http://localhost:8000/api/temp_workspace/execute
+Content-Type: application/json
+
+{
+  "code": "const arr = [1, 2, 3, 4, 5]; const sum = arr.reduce((a, b) => a + b, 0); console.log('Array sum:', sum);",
+  "timeout": 3000,
+  "memoryLimit": 30
+}
+
+###
+
+### 对象操作示例
+POST http://localhost:8000/api/temp_workspace/execute
+Content-Type: application/json
+
+{
+  "code": "const user = { name: 'Alice', age: 25 }; console.log('User:', JSON.stringify(user));",
+  "timeout": 2000,
+  "memoryLimit": 25
+}
+
+###
+
+### 异步操作示例
+POST http://localhost:8000/api/temp_workspace/execute
+Content-Type: application/json
+
+{
+  "code": "async function main() { await new Promise(r => setTimeout(r, 100)); console.log('Async done'); } main();",
+  "timeout": 3000,
+  "memoryLimit": 30
+}
+
+###
+
+### 错误处理示例
+POST http://localhost:8000/api/temp_workspace/execute
+Content-Type: application/json
+
+{
+  "code": "throw new Error('This is a test error');",
+  "timeout": 2000,
+  "memoryLimit": 25
+}
+
+###
+
+### 超时测试示例
+POST http://localhost:8000/api/temp_workspace/execute
+Content-Type: application/json
+
+{
+  "code": "while (true) { }",
+  "timeout": 1000,
+  "memoryLimit": 25
+}
+
+###
+
+### 文件系统操作示例（会被限制）
+POST http://localhost:8000/api/temp_workspace/execute
+Content-Type: application/json
+
+{
+  "code": "await Deno.readTextFile('/etc/passwd');",
+  "timeout": 2000,
+  "memoryLimit": 25
+}
+
+###
+
+### 网络访问示例（会被限制）
+POST http://localhost:8000/api/temp_workspace/execute
+Content-Type: application/json
+
+{
+  "code": "await fetch('https://api.github.com/user');",
+  "timeout": 2000,
+  "memoryLimit": 25
+}
+
+###
+
+### 参数验证示例 - 缺少代码
+POST http://localhost:8000/api/temp_workspace/execute
+Content-Type: application/json
+
+{
+  "timeout": 2000,
+  "memoryLimit": 25,
+}
+
+###
+
+### 参数验证示例 - 超时时间无效
+POST http://localhost:8000/api/temp_workspace/execute
+Content-Type: application/json
+
+{
+  "code": "console.log('test');",
+  "timeout": 1,
+  "memoryLimit": 25
+}
+
+###
+
+### 自定义工作空间示例
+POST http://localhost:8000/api/temp_workspace/execute
+Content-Type: application/json
+
+{
+  "code": "console.log('Using custom workspace');",
+  "timeout": 2000,
+  "memoryLimit": 25,
+}
+
+###
+
+### 参数验证示例 - 内存限制无效
+POST http://localhost:8000/api/temp_workspace/execute
+Content-Type: application/json
+
+{
+  "code": "console.log('test');",
+  "timeout": 2000,
+  "memoryLimit": 1000,
+}
+
+###
+
+### 工作空间文件管理 - 列出文件
+POST http://localhost:8000/api/temp_workspace/files
+Content-Type: application/json
+
+{
+  "action": "list"
+}
+
+###
+
+### 工作空间文件管理 - 创建文件
+POST http://localhost:8000/api/temp_workspace/files
+Content-Type: application/json
+
+{
+  "action": "create",
+  "filename": "test.txt",
+  "content": "Hello, this is a test file!"
+}
+
+###
+
+### 工作空间文件管理 - 读取文件
+POST http://localhost:8000/api/temp_workspace/files
+Content-Type: application/json
+
+{
+  "action": "read",
+  "filename": "test.txt"
+}
+
+###
+
+### 工作空间文件管理 - 更新文件
+POST http://localhost:8000/api/temp_workspace/files
+Content-Type: application/json
+
+{
+  "action": "update",
+  "filename": "test.txt",
+  "content": "Updated content!"
+}
+
+###
+
+### 工作空间文件管理 - 删除文件
+POST http://localhost:8000/api/temp_workspace/files
+Content-Type: application/json
+
+{
+  "action": "delete",
+  "filename": "test.txt"
+}
+
+###

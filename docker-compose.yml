@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  sandbox-server:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      # 如果需要持久化沙盒工作空间，可以挂载卷
+      - sandbox_workspaces:/tmp/sandbox_workspaces
+    environment:
+      - DENO_ENV=production
+      - MASTER_KEY=change_me_in_production
+    restart: unless-stopped
+    # 给容器足够的权限来运行沙盒子进程
+    security_opt:
+      - seccomp:unconfined
+    cap_add:
+      - SYS_ADMIN
+    privileged: true
+
+volumes:
+  sandbox_workspaces:

@@ -1,0 +1,38 @@
+# 忽略不需要的文件
+node_modules
+*.log
+.git
+.gitignore
+README.md
+.env
+.nyc_output
+coverage
+.DS_Store
+*.swp
+*.swo
+*~
+
+# 忽略测试文件（生产环境不需要）
+*.test.ts
+*.spec.ts
+test
+tests
+
+# 忽略开发工具
+.vscode
+.idea
+*.tmp
+
+# 忽略构建产物（构建阶段会重新生成）
+dist
+build
+
+# 忽略 Docker 文件
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# 忽略其他配置文件
+.prettierrc
+.eslintrc
+*.config.*
